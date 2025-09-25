@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.dao.ParkingRecordMapper">
+
+    <select id="selectHistoryByLicense" parameterType="String" resultMap="ParkingRecordMap">
+        SELECT * FROM parking_record
+        WHERE license_plate = #{licensePlate}
+        ORDER BY start_time DESC
+    </select>
+
+    <resultMap id="ParkingRecordMap" type="com.example.entity.ParkingRecord">
+        <id column="id" property="id"/>
+        <result column="license_plate" property="licensePlate"/>
+        <result column="start_time" property="startTime" typeHandler="org.apache.ibatis.type.LocalDateTimeTypeHandler"/>
+        <result column="end_time" property="endTime" typeHandler="org.apache.ibatis.type.LocalDateTimeTypeHandler"/>
+        <result column="fee" property="fee"/>
+        <result column="paid" property="paid"/>
+    </resultMap>
+
+
+    <insert id="insert" parameterType="com.example.entity.ParkingRecord" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO parking_record(license_plate, start_time, end_time, fee, paid)
+        VALUES (#{licensePlate}, #{startTime}, #{endTime}, #{fee}, #{paid})
+    </insert>
+
+    <update id="update" parameterType="com.example.entity.ParkingRecord">
+        UPDATE parking_record
+        SET end_time = #{endTime},
+            fee = #{fee},
+            paid = #{paid}
+        WHERE id = #{id}
+    </update>
+
+    <select id="selectOngoingByLicense" parameterType="String" resultMap="ParkingRecordMap">
+        SELECT * FROM parking_record
+        WHERE license_plate = #{licensePlate} AND end_time IS NULL
+            LIMIT 1
+    </select>
+
+
+</mapper>

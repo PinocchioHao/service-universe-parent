@@ -1,0 +1,5 @@
+{"activity":"endParking","resource":"ParkingService","caseId":"ABC12333","timestamp":"2025-09-25T19:28:19.650373400"}
+{"activity":"queryParkingHistory","resource":"ParkingService","caseId":"ABC12333","timestamp":"2025-09-25T19:28:54.562953400"}
+{"activity":"queryParkingHistory","resource":"ParkingService","caseId":"ABC12333","timestamp":"2025-09-25T20:50:30.620603400"}
+{"activity":"queryParkingHistory","resource":"ParkingService","caseId":"ABC12333","timestamp":"2025-09-25T21:17:58.639342600"}
+{"activity":"queryParkingHistory","resource":"ParkingService","caseId":"ABC12333","timestamp":"2025-09-25T21:31:52.539982700"}
