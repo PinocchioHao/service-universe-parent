@@ -16,6 +16,7 @@ service-universe-parent/        # 父模块（统一依赖 & 管理）
 ├── eureka/                     # 注册中心 (Eureka Server)
 ├── gateway/                    # 网关服务 (Spring Cloud Gateway)
 ├── service-municipal-parking/  # 停车服务示例 (可参考创建其他服务)
+├── service-energy-reporting/   # 能源上报服务
 │
 ├── logs/                       # 进程日志输出目录 (parking-process.log)
 │
@@ -47,6 +48,11 @@ service-universe-parent/        # 父模块（统一依赖 & 管理）
   示例业务服务：停车服务。
 
   > 其他微服务可参考该模块进行开发。
+
+* **service-energy-reporting**
+  业务服务：能源上报服务。
+
+
 
 * **logs**
   存放 parking 服务产生的 **process analytics** 日志文件。
