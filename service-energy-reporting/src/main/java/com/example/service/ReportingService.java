@@ -11,13 +11,24 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
-
+/**
+ * Service layer for handling outage report business logic.
+ */
 @Service
 public class ReportingService {
 
     @Autowired
     private ReportingRecordMapper mapper;
 
+    /**
+     * Create a new outage report.
+     * - Generates a unique reportId using UUID
+     * - Sets the current timestamp
+     * - Sets initial status as "RECEIVED"
+     *
+     * @param record ReportingRecord object containing report details from request
+     * @return ApiResponse with success/failure message and created report data
+     */
     public ApiResponse<ReportingRecord> createReport(ReportingRecord record) {
         // Generate unique report ID
         record.setReportId(UUID.randomUUID().toString());
@@ -32,6 +43,12 @@ public class ReportingService {
         }
     }
 
+    /**
+     * Retrieve a specific outage report by reportId.
+     *
+     * @param reportId Unique outage report identifier
+     * @return ApiResponse containing the report if found, otherwise failure message
+     */
     public ApiResponse<ReportingRecord> getReport(String reportId) {
         try {
             ReportingRecord record = mapper.findByReportId(reportId);
@@ -45,6 +62,13 @@ public class ReportingService {
         }
     }
 
+    /**
+     * Update the status of an outage report (e.g., RECEIVED → IN_PROGRESS → RESTORED).
+     *
+     * @param reportId The unique ID of the report to update
+     * @param status   The new status value
+     * @return ApiResponse with success or failure message
+     */
     public ApiResponse<ReportingRecord> updateStatus(String reportId, String status) {
         try {
             mapper.updateStatus(reportId, status);
