@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.dao.ReportingRecordMapper">
+
+    <!-- Insert a new outage report -->
+    <insert id="insert" parameterType="com.example.entity.ReportingRecord">
+        INSERT INTO reporting_record
+        (user_id, location, time_reported, description, contact_details, report_id, status)
+        VALUES
+        (#{userId}, #{location}, #{timeReported}, #{description}, #{contactDetails}, #{reportId}, #{status})
+    </insert>
+
+    <!-- Find outage report by reportId -->
+    <select id="findByReportId" parameterType="string" resultType="com.example.entity.ReportingRecord">
+        SELECT id, user_id, location, time_reported, description, contact_details, report_id, status
+        FROM reporting_record
+        WHERE report_id = #{reportId}
+    </select>
+
+    <!-- Update outage report status -->
+    <update id="updateStatus" parameterType="map">
+        UPDATE reporting_record
+        SET status = #{status}
+        WHERE report_id = #{reportId}
+    </update>
+
+    <!-- Retrieve all outage reports -->
+    <select id="findAll" resultType="com.example.entity.ReportingRecord">
+        SELECT id, user_id, location, time_reported, description, contact_details, report_id, status
+        FROM reporting_record
+    </select>
+
+
+</mapper>
