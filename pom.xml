@@ -34,6 +34,7 @@
         <module>gateway</module>
         <module>service-municipal-parking</module>
         <module>service-energy-reporting</module>
+        <module>service-driver-booking</module>
     </modules>
 
     <!-- 统一依赖版本管理 -->

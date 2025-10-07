@@ -1,0 +1,40 @@
+<configuration>
+
+    <!-- 普通控制台日志 -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- ProcessLogger 专用文件日志 -->
+    <appender name="PROCESS" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/parking-process.log</file>
+        <encoder>
+            <pattern>%msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/parking-process.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!-- ProcessLogger 控制台输出 -->
+    <appender name="PROCESS_CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- ProcessLogger 日志 -->
+    <logger name="com.example.util.ProcessLogger" level="INFO" additivity="false">
+        <appender-ref ref="PROCESS"/>
+        <appender-ref ref="PROCESS_CONSOLE"/>
+    </logger>
+
+    <!-- 默认 root 日志 -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+</configuration>
