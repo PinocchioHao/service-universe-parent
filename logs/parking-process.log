@@ -9,3 +9,5 @@
 {"activity":"payParkingFee","resource":"ParkingService","caseId":"ABC12333","timestamp":"2025-10-07T22:20:20.767300900"}
 {"activity":"payParkingFee","resource":"ParkingService","caseId":"ABC12333","timestamp":"2025-10-07T22:20:25.884048900"}
 {"activity":"payParkingFee","resource":"ParkingService","caseId":"ABC12333","timestamp":"2025-10-07T22:20:37.785281700"}
+{"activity":"startParking","resource":"ParkingService","caseId":"ABC12333","timestamp":"2025-10-07T23:07:52.027806300"}
+{"activity":"endParking","resource":"ParkingService","caseId":"ABC12333","timestamp":"2025-10-07T23:09:58.111930200"}

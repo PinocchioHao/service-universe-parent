@@ -6,6 +6,8 @@ import com.example.entity.ParkingRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -32,6 +34,7 @@ public class ParkingService {
         return ApiResponse.success("Parking started: " + licensePlate, record);
     }
 
+
     public ApiResponse<ParkingRecord> endParking(String licensePlate) {
         ParkingRecord record = mapper.selectOngoingByLicense(licensePlate);
         if (record == null) {
@@ -40,14 +43,19 @@ public class ParkingService {
 
         record.setEndTime(LocalDateTime.now());
         long minutes = Duration.between(record.getStartTime(), record.getEndTime()).toMinutes();
-        record.setFee(minutes * 0.1); // $0.1 per minute ≈ $6 per hour
+
+        // Calculate fee and round to 2 decimal places
+        BigDecimal fee = BigDecimal.valueOf(minutes * 0.1).setScale(2, RoundingMode.HALF_UP); // $0.1 per minute ≈ $6 per hour
+        record.setFee(fee.doubleValue());
+
         mapper.update(record);
 
         return ApiResponse.success(
-                "Parking ended: " + licensePlate + ", Duration: " + minutes + " minutes, Fee: " + record.getFee() + " AUD",
+                "Parking ended: " + licensePlate + ", Duration: " + minutes + " minutes, Fee: " + fee + " AUD",
                 record
         );
     }
+
 
     public ApiResponse<ParkingRecord> payParkingFee(String licensePlate) {
         List<ParkingRecord> history = mapper.selectHistoryByLicense(licensePlate);
