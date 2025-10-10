@@ -1,9 +1,9 @@
 package com.example.entity;
 
 public class ApiResponse<T> {
-    private boolean success;  // 是否成功
-    private String message;   // 提示/错误信息
-    private T data;           // 返回的数据（可选）
+    private boolean success;
+    private String message;
+    private T data;
 
     public ApiResponse() {}
 

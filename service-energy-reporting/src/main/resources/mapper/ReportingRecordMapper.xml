@@ -14,7 +14,7 @@
 
     <!-- Find outage report by reportId -->
     <select id="findByReportId" parameterType="string" resultType="com.example.entity.ReportingRecord">
-        SELECT id, user_id, location, time_reported, description, contact_details, report_id, status
+        SELECT id, user_id as userId, location, time_reported as timeReported, description, contact_details as contactDetails, report_id as reportId, status
         FROM reporting_record
         WHERE report_id = #{reportId}
     </select>
@@ -28,7 +28,7 @@
 
     <!-- Retrieve all outage reports -->
     <select id="findAll" resultType="com.example.entity.ReportingRecord">
-        SELECT id, user_id, location, time_reported, description, contact_details, report_id, status
+        SELECT id, user_id as userId, location, time_reported as timeReported, description, contact_details as contactDetails, report_id as reportId, status
         FROM reporting_record
     </select>
 

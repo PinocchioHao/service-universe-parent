@@ -24,11 +24,21 @@ public class ProcessLogAspect {
         }
     }
 
+    //private String extractCaseId(Object[] args) {
+    //    // 简化逻辑：如果第一个参数是 String，就认为是 caseId (比如 licensePlate)
+    //    if (args != null && args.length > 0 && args[0] instanceof String) {
+    //        return (String) args[0];
+    //    }
+    //    return "UNKNOWN";
+    //}
+
     private String extractCaseId(Object[] args) {
-        // 简化逻辑：如果第一个参数是 String，就认为是 caseId (比如 licensePlate)
-        if (args != null && args.length > 0 && args[0] instanceof String) {
-            return (String) args[0];
+        if (args == null) return "000";
+        if (args.length<1) return "000";
+        for (Object a : args) {
+            if (a instanceof Long l) return String.valueOf(l);      // Long 优先当 bookingId
+            if (a instanceof String s && s.matches("\\d+")) return s; // 纯数字字符串也当作 id
         }
-        return "UNKNOWN";
+        return "001";
     }
 }

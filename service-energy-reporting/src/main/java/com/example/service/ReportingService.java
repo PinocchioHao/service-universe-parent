@@ -31,7 +31,7 @@ public class ReportingService {
      */
     public ApiResponse<ReportingRecord> createReport(ReportingRecord record) {
         // Generate unique report ID
-        record.setReportId(UUID.randomUUID().toString());
+        //record.setReportId(UUID.randomUUID().toString()); 修改为用户自己输入
         record.setTimeReported(LocalDateTime.now());
         record.setStatus("RECEIVED");
 

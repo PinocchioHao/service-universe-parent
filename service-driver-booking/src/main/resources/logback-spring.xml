@@ -9,12 +9,12 @@
 
     <!-- ProcessLogger 专用文件日志 -->
     <appender name="PROCESS" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>logs/parking-process.log</file>
+        <file>logs/booking-process.log</file>
         <encoder>
             <pattern>%msg%n</pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>logs/parking-process.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>logs/booking-process.%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>7</maxHistory>
         </rollingPolicy>
     </appender>
