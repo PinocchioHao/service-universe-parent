@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.dao.TestCenterMapper">
+
+    <resultMap id="CenterMap" type="com.example.entity.TestCenter">
+        <id     property="id"     column="id"/>
+        <result property="code"   column="code"/>
+        <result property="name"   column="name"/>
+        <result property="status" column="status"/>
+        <result property="createdAt"     column="created_at"/>
+        <result property="updatedAt"     column="updated_at"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="CenterMap">
+        SELECT id, code, name, status, created_at, updated_at
+        FROM test_center
+        ORDER BY name
+    </select>
+
+    <update id="occupyIfFree">
+        UPDATE test_center
+        SET status = 1, updated_at = NOW()
+        WHERE id = #{id} AND status = 0
+    </update>
+
+    <update id="release">
+        UPDATE test_center
+        SET status = 0, updated_at = NOW()
+        WHERE id = #{id} AND status = 1
+    </update>
+
+</mapper>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dao.TestBookingMapper">
+
+    <resultMap id="BookingMap" type="com.example.entity.TestBooking">
+        <id     property="id"            column="id"/>
+        <result property="centerId"      column="center_id"/>
+        <result property="centerName"      column="center_name"/>
+        <result property="candidateName" column="candidate_name"/>
+        <result property="birthday"      column="birthday"/>
+        <result property="plateNo"       column="plate_no"/>
+        <result property="testType"      column="test_type"/>
+        <result property="status"        column="status"/>
+        <result property="paymentStatus" column="payment_status"/>
+        <result property="result"        column="result"/>
+        <result property="feeCents"      column="fee_cents"/>
+        <result property="createdAt"     column="created_at"/>
+        <result property="updatedAt"     column="updated_at"/>
+    </resultMap>
+
+    <insert id="insertSimple"
+            parameterType="com.example.entity.TestBooking"
+            useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO test_booking
+        (center_id, candidate_name, birthday, plate_no, test_type,
+         status, payment_status, result, fee_cents, created_at)
+        VALUES
+            (#{centerId}, #{candidateName}, #{birthday}, #{plateNo}, #{testType},
+             #{status}, #{paymentStatus}, #{result}, #{feeCents}, NOW())
+    </insert>
+
+    <select id="findById" resultMap="BookingMap">
+        SELECT id, center_id, candidate_name, birthday, plate_no, test_type,
+               status, payment_status, result, fee_cents, created_at, updated_at
+        FROM test_booking
+        WHERE id = #{bookingId}
+    </select>
+
+    <update id="cancelById">
+        UPDATE test_booking
+        SET status = 'CANCELED', updated_at = NOW()
+        WHERE id = #{bookingId}
+    </update>
+
+    <update id="completeWithResult">
+        UPDATE test_booking
+        SET status = 'COMPLETED',
+            result = #{result},
+            updated_at = NOW()
+        WHERE id = #{bookingId}
+    </update>
+
+    <select id="findAllByPerson" resultMap="BookingMap">
+        SELECT b.id, b.center_id, c.name as center_name, b.candidate_name, b.birthday, b.plate_no, b.test_type,
+               b.status, b.payment_status, b.result, b.fee_cents, b.created_at, b.updated_at
+        FROM test_booking b
+        JOIN test_center c
+        ON c.id = b.center_id
+        WHERE candidate_name = #{candidateName}
+          AND birthday = #{birthday}
+        ORDER BY created_at DESC
+    </select>
+
+    <update id="markPaid">
+        UPDATE test_booking
+        SET payment_status = 'PAID',
+        updated_at = NOW()
+        WHERE id = #{bookingId}
+        AND status = 'COMPLETED'
+        AND payment_status != 'PAID'
+    </update>
+
+</mapper>
