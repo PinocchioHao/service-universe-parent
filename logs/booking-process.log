@@ -26,3 +26,14 @@
 {"activity":"listAll","resource":"CenterService","caseId":"000","timestamp":"2025-10-10T20:09:23.057827"}
 {"activity":"listAll","resource":"CenterService","caseId":"000","timestamp":"2025-10-10T20:09:23.572591"}
 {"activity":"listAll","resource":"CenterService","caseId":"000","timestamp":"2025-10-10T20:09:24.308273"}
+{"activity":"listAll","resource":"CenterService","caseId":"000","timestamp":"2025-10-10T23:13:30.549222600"}
+{"activity":"listAll","resource":"CenterService","caseId":"000","timestamp":"2025-10-10T23:13:44.174000800"}
+{"activity":"listAll","resource":"CenterService","caseId":"000","timestamp":"2025-10-10T23:14:32.809830400"}
+{"activity":"listAll","resource":"CenterService","caseId":"000","timestamp":"2025-10-10T23:16:38.093751300"}
+{"activity":"listAll","resource":"CenterService","caseId":"000","timestamp":"2025-10-10T23:18:08.326805100"}
+{"activity":"listAll","resource":"CenterService","caseId":"000","timestamp":"2025-10-10T23:18:13.627869400"}
+{"activity":"bookCenterOnly","resource":"BookingService","caseId":"2","timestamp":"2025-10-10T23:19:09.825985"}
+{"activity":"myAll","resource":"BookingService","caseId":"001","timestamp":"2025-10-10T23:19:21.047913600"}
+{"activity":"cancel","resource":"BookingService","caseId":"11","timestamp":"2025-10-10T23:19:29.395833800"}
+{"activity":"listAll","resource":"CenterService","caseId":"000","timestamp":"2025-10-10T23:19:45.239560800"}
+{"activity":"myAll","resource":"BookingService","caseId":"001","timestamp":"2025-10-10T23:19:49.276345"}
