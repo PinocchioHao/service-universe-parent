@@ -6,6 +6,8 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
+
 @Aspect
 @Component
 public class ProcessLogAspect {
@@ -33,12 +35,12 @@ public class ProcessLogAspect {
     //}
 
     private String extractCaseId(Object[] args) {
-        if (args == null) return "000";
-        if (args.length<1) return "000";
+        if (args == null) return UUID.randomUUID().toString();
+        if (args.length<1) return UUID.randomUUID().toString();
         for (Object a : args) {
             if (a instanceof Long l) return String.valueOf(l);      // Long 优先当 bookingId
             if (a instanceof String s && s.matches("\\d+")) return s; // 纯数字字符串也当作 id
         }
-        return "001";
+        return UUID.randomUUID().toString();
     }
 }
