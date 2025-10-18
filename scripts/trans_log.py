@@ -21,8 +21,8 @@ def extract_json_log(input_file, output_file="process_log.csv"):
 
     df = pd.DataFrame(rows)
     df.to_csv(output_file, index=False)
-    print(f"✅ 成功提取 {len(rows)} 条 JSON 日志，已保存为 {output_file}")
+    print(f"✅ Successfully extracted {len(rows)} JSON log entries and saved to {output_file}")
 
 if __name__ == "__main__":
-    input_file = input("请输入日志文件名（例如 log.txt）：").strip()
+    input_file = input("Please enter the log file name (e.g., log.txt): ").strip()
     extract_json_log(input_file)
