@@ -6,6 +6,8 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
+
 @Aspect
 @Component
 public class ProcessLogAspect {
@@ -29,6 +31,6 @@ public class ProcessLogAspect {
         if (args != null && args.length > 0 && args[0] instanceof String) {
             return (String) args[0];
         }
-        return "UNKNOWN";
+        return UUID.randomUUID().toString();
     }
 }
