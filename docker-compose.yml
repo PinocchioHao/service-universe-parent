@@ -1,0 +1,51 @@
+version: "3.9"
+services:
+  eureka:
+    build: ./eureka
+    container_name: eureka
+    ports:
+      - "8761:8761"
+
+  gateway:
+    build: ./gateway
+    container_name: gateway
+    depends_on:
+      - eureka
+    ports:
+      - "8080:8080"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka/
+
+  service-municipal-parking:
+    build: ./service-municipal-parking
+    container_name: parking-service
+    depends_on:
+      - eureka
+    ports:
+      - "8081:8081"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka/
+
+  service-energy-reporting:
+    build: ./service-energy-reporting
+    container_name: energy-service
+    depends_on:
+      - eureka
+    ports:
+      - "8082:8082"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka/
+
+  service-driver-booking:
+    build: ./service-driver-booking
+    container_name: driver-service
+    depends_on:
+      - eureka
+    ports:
+      - "8083:8083"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka/
+
+networks:
+  default:
+    driver: bridge
