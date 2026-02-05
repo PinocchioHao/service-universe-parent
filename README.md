@@ -1,7 +1,5 @@
----
 
 # 🚀 Service Universe: Microservices Ecosystem
-
 **Service Universe** is a comprehensive microservices demonstration system built with **Spring Boot, Spring Cloud, and Docker Compose**. It showcases the end-to-end implementation of microservices decomposition, service registration/discovery, API gateway routing, and non-intrusive business process logging for analytics.
 
 ---
