@@ -28,7 +28,7 @@
 
 ### Process Mining Analysis (Disco)
 
-> Visualized business process flows reconstructed from automated system logs using Disco.
+<img src="docs/screenshots/su6.png" width="32%" />
 
 ---
 
